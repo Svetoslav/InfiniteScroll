@@ -43,12 +43,12 @@ class InfiniteScrollViewController: UIViewController, UITableViewDelegate, UITab
     }
 
     // MARK: - Table view delegate/datasource methods
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return displayCities?.count ?? 0
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = citiesTableView.dequeueReusableCellWithIdentifier(TableViewCells.BasicTableCell.rawValue, forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = citiesTableView.dequeueReusableCell(withIdentifier: TableViewCells.BasicTableCell.rawValue, for: indexPath)
         cell.textLabel?.text = displayCities?[indexPath.row]
         return cell
     }
@@ -58,7 +58,7 @@ class InfiniteScrollViewController: UIViewController, UITableViewDelegate, UITab
     // for example, if you are loading 50 results at a time, then fire off a request IN BACKGROUND (not blocking the main thread)
     // to fetch more results and once the background call returns update your main array and relaod the table.
     // That's it. This is all you need to make infinite scroll work.
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if (displayCities!.count - indexPath.row) == Constants.FetchThreshold && canFetchMoreResults {
             fetchDataFromIndex(displayCities!.count)
         }
@@ -67,14 +67,14 @@ class InfiniteScrollViewController: UIViewController, UITableViewDelegate, UITab
     // MARK: - Internal methods
 
     // method to fetch more data in background thread (see Data.switch for more details)
-    private func fetchDataFromIndex(index: Int) {
+    private func fetchDataFromIndex(_ index: Int) {
         NSLog("Fetching data from index: \(index)")
         CaCities.getCitiesFromIndex(index, andCount: Constants.FetchLimit) { (data: [String]?) -> () in
             if let data = data {
                 if index == 0 {
                     self.displayCities = data
                 } else {
-                    self.displayCities?.appendContentsOf(data)
+                    self.displayCities?.append(contentsOf: data)
                 }
                 self.canFetchMoreResults = !(data.count < Constants.FetchLimit)
             }
