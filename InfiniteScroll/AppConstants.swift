@@ -10,4 +10,5 @@ import Foundation
 
 enum TableViewCells: String {
     case BasicTableCell
+    case LoadMoreTableCell
 }

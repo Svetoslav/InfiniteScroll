@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3ABAF9A11F82850F00DC3DAC /* LoadMoreTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABAF9A01F82850F00DC3DAC /* LoadMoreTableCell.swift */; };
 		AC2D68B81BC4C14800D384E6 /* InfiniteScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2D68B71BC4C14800D384E6 /* InfiniteScrollViewController.swift */; };
 		AC2D68BA1BC4C1A700D384E6 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2D68B91BC4C1A700D384E6 /* AppConstants.swift */; };
 		ACA2CED31BC45ABF00DFE608 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA2CED21BC45ABF00DFE608 /* AppDelegate.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3ABAF9A01F82850F00DC3DAC /* LoadMoreTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreTableCell.swift; sourceTree = "<group>"; };
 		AC2D68B71BC4C14800D384E6 /* InfiniteScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteScrollViewController.swift; sourceTree = "<group>"; };
 		AC2D68B91BC4C1A700D384E6 /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		ACA2CECF1BC45ABE00DFE608 /* InfiniteScroll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InfiniteScroll.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +71,7 @@
 				ACA2CEDB1BC45ABF00DFE608 /* LaunchScreen.storyboard */,
 				ACA2CEDE1BC45ABF00DFE608 /* Info.plist */,
 				AC2D68B91BC4C1A700D384E6 /* AppConstants.swift */,
+				3ABAF9A01F82850F00DC3DAC /* LoadMoreTableCell.swift */,
 			);
 			path = InfiniteScroll;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3ABAF9A11F82850F00DC3DAC /* LoadMoreTableCell.swift in Sources */,
 				AC2D68B81BC4C14800D384E6 /* InfiniteScrollViewController.swift in Sources */,
 				ACA2CEE51BC45ACE00DFE608 /* Data.swift in Sources */,
 				ACA2CED31BC45ABF00DFE608 /* AppDelegate.swift in Sources */,
