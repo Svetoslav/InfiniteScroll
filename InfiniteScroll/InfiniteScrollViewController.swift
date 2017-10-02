@@ -29,7 +29,7 @@ class InfiniteScrollViewController: UIViewController, UITableViewDelegate, UITab
     private var isLoading: Bool = false
 
     struct Constants {
-        static let FetchThreshold = 5 // a constant to determine when to fetch the results; anytime   difference between current displayed cell and your total results fall below this number you want to fetch the results and reload the table
+        static let FetchThreshold = 1 // a constant to determine when to fetch the results; anytime   difference between current displayed cell and your total results fall below this number you want to fetch the results and reload the table
         static let FetchLimit = 50 // results to fetch in single call
     }
 
@@ -108,12 +108,21 @@ class InfiniteScrollViewController: UIViewController, UITableViewDelegate, UITab
             self.citiesTableView.deleteSections([1], with: .top)
 
             if let data = data {
-                if index == 0 {
-                    self.displayCities = data
-                } else {
-                    self.displayCities?.append(contentsOf: data)
+                // major hackity-sax warning: the delayed dispatch is because
+                // setting `displayCities` triggers a reload of the table view,
+                // which interrupts the `deleteSections` animation and things
+                // get visually plenty glitchy. unfortunately `CATransaction.animationDuration()`
+                // doesn't return reasonable value outside the actual animation block and I have
+                // to resort to magic number (of half a second in this case)
+                DispatchQueue.main
+                    .asyncAfter(deadline: .now() + 0.5) {
+                        if index == 0 {
+                            self.displayCities = data
+                        } else {
+                            self.displayCities?.append(contentsOf: data)
+                        }
+                        self.canFetchMoreResults = !(data.count < Constants.FetchLimit)
                 }
-                self.canFetchMoreResults = !(data.count < Constants.FetchLimit)
             }
         }
     }

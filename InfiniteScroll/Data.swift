@@ -15,6 +15,8 @@ struct CaCities {
         // get the data from data source in background thread
         // do not perform any expensive processing function on main queue as it will make the UI unresponsive
         DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async { () -> Void in
+            Thread.sleep(forTimeInterval: 0.8) // simulate real loading
+
             var rangeStartIndex = index
 
             // handle start index out of bounds
